@@ -3,7 +3,6 @@ export const dynamic = 'force-dynamic';
 import KanbanView from '@/components/KanbanView';
 import { Board, IBoard } from '../models/Board';
 import BoardInfoBar from '@/components/BoardInfoBar';
-import dbConnect from '@/lib/mongodb';
 
 export default async function Home() {
     // await dbConnect();
