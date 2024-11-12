@@ -1,5 +1,6 @@
-import connect from '@/lib/mongodb';
+import dbConnect from '@/lib/mongodb';
 
 export async function register() {
-    await connect();
+    if (process.env.NEXT_RUNTIME !== 'nodejs') return;
+    await dbConnect();
 }

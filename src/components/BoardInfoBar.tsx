@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Plus } from 'lucide-react';
-import { IBoard } from '@/app/models/Board';
+import { IBoard } from '@/models/Board';
 
 export default function BoardInfoBar({
     boardInfo: { name },

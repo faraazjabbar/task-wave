@@ -1,4 +1,4 @@
-import { IColumn } from '@/app/models/Board';
+import { IColumn } from '@/models/Board';
 import ColumnView from './ColumnView';
 
 export default async function KanbanView({

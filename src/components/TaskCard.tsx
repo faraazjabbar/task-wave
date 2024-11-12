@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import { format } from 'date-fns';
-import { ITask } from '@/app/models/Board';
+import { ITask } from '@/models/Board';
 
 export default function TaskCard({ taskData }: { taskData: ITask }) {
     return (

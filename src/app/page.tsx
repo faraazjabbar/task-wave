@@ -1,8 +1,12 @@
+export const dynamic = 'force-dynamic';
+
 import KanbanView from '@/components/KanbanView';
-import { Board, IBoard } from './models/Board';
+import { Board, IBoard } from '../models/Board';
 import BoardInfoBar from '@/components/BoardInfoBar';
+import dbConnect from '@/lib/mongodb';
 
 export default async function Home() {
+    // await dbConnect();
     const boardData: IBoard = await Board.findById(
         '64b7f0f2f1a4e8b1d8f1e8b2'
     ).populate({ path: 'columns', populate: { path: 'tasks' } });

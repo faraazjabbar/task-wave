@@ -1,5 +1,5 @@
 import { EllipsisVertical, Plus } from 'lucide-react';
-import { IColumn } from '@/app/models/Board';
+import { IColumn } from '@/models/Board';
 import TaskCard from './TaskCard';
 
 export default function ColumnView({ columnData }: { columnData: IColumn }) {
