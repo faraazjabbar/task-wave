@@ -11,9 +11,15 @@ export default async function Home() {
         <div className="drawer">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
-                <BoardInfoBar boardInfo={boardData}></BoardInfoBar>
-                {boardData.columns && (
-                    <KanbanView columnsData={boardData.columns}></KanbanView>
+                {boardData && (
+                    <>
+                        <BoardInfoBar boardInfo={boardData}></BoardInfoBar>
+                        {boardData.columns && (
+                            <KanbanView
+                                columnsData={boardData.columns}
+                            ></KanbanView>
+                        )}{' '}
+                    </>
                 )}
             </div>
             <div className="drawer-side">
