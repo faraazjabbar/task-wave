@@ -24,7 +24,7 @@ export default function ColumnView({ columnData }: { columnData: IColumn }) {
             {columnData.tasks && (
                 <div className="rounded-2xl flex flex-col gap-2">
                     {columnData.tasks.map((task) => (
-                        <TaskCard taskData={task} />
+                        <TaskCard key={task.title} taskData={task} />
                     ))}
                 </div>
             )}
