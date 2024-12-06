@@ -4,7 +4,11 @@ import { getBoardData } from '@/lib/data';
 import { IBoard } from '@/models/Board';
 import Link from 'next/link';
 
-export default async function Board({ params }: { params: { id: string } }) {
+export default async function Board({
+    params,
+}: {
+    params: Promise<{ id: string }>;
+}) {
     // await dbConnect();
     const routeParams = await params;
     const boardId = routeParams.id;
