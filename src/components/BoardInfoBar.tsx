@@ -4,9 +4,9 @@ import { IBoard } from '@/models/Board';
 
 export default function BoardInfoBar({
     boardInfo: { name },
-}: {
+}: Readonly<{
     boardInfo: IBoard;
-}) {
+}>) {
     return (
         <section className="px-8 py-4 bg-neutral">
             <div className="flex justify-between">

@@ -6,7 +6,7 @@ export default function ColumnView({ columnData }: { columnData: IColumn }) {
     return (
         <div className="flex flex-col gap-4">
             <div className="flex gap-2 items-center">
-                <div className="bg-orange-400 rounded-full h-2 w-2"></div>{' '}
+                <div className="bg-orange-400 rounded-full h-2 w-2"></div>
                 <h3 className="font-bold">{columnData.name}</h3>
                 {columnData.tasks && (
                     <div className="badge badge-ghost font-bold">

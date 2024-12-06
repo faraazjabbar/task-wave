@@ -3,6 +3,7 @@ import mongoose, { Types } from 'mongoose';
 const Schema = mongoose.Schema;
 
 export interface IBoard {
+    id: string;
     name: string;
     owner: Types.ObjectId;
     columns?: Types.Array<IColumn>;
