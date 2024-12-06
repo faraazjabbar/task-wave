@@ -1,6 +1,7 @@
 import { getAllBoards } from '@/lib/data';
 import { IBoard } from '@/models/Board';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default async function Boards() {
     const boardsData: IBoard[] = await getAllBoards();
@@ -12,6 +13,7 @@ export default async function Boards() {
             <div className="flex gap-4">
                 {boardsData.map((boardsData) => (
                     <Link
+                        key={boardsData.id}
                         href={'boards/' + boardsData.id}
                         className="card bg-base-100 w-96 shadow-xl cursor-pointer"
                     >
@@ -19,8 +21,10 @@ export default async function Boards() {
                             <h3 className="card-title">{boardsData.name}</h3>
                         </div>
                         <figure>
-                            <img
-                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                            <Image
+                                width={200}
+                                height={200}
+                                src="/icon.png"
                                 alt="Shoes"
                             />
                         </figure>

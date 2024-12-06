@@ -4,14 +4,11 @@ import { getBoardData } from '@/lib/data';
 import { IBoard } from '@/models/Board';
 import Link from 'next/link';
 
-export default async function Board({
-    params: { id },
-}: {
-    params: { id: string };
-}) {
+export default async function Board({ params }: { params: { id: string } }) {
     // await dbConnect();
-
-    const boardData: IBoard = await getBoardData(id);
+    const routeParams = await params;
+    const boardId = routeParams.id;
+    const boardData: IBoard = await getBoardData(boardId);
 
     return (
         <>

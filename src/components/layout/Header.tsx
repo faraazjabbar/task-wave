@@ -1,4 +1,5 @@
 import { auth, signOut } from '@/auth';
+import Image from 'next/image';
 
 export default async function Header() {
     const session = await auth();
@@ -18,9 +19,11 @@ export default async function Header() {
                     >
                         <div className="w-10 rounded-full">
                             {session?.user?.image && (
-                                <img
+                                <Image
                                     alt="Profile Pic"
                                     src={session.user.image}
+                                    width={20}
+                                    height={20}
                                 />
                             )}
                         </div>

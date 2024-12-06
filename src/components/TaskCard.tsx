@@ -1,5 +1,4 @@
 import {
-    ArrowBigDown,
     ArrowBigUp,
     Calendar,
     EllipsisVertical,
