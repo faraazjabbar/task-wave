@@ -2,14 +2,18 @@ import { getAllBoards } from '@/lib/data';
 import { IBoard } from '@/models/Board';
 import Link from 'next/link';
 import Image from 'next/image';
+import AddBoard from '@/components/AddBoard';
+import Modal from '@/components/ui/Modal';
 
 export default async function Boards() {
     const boardsData: IBoard[] = await getAllBoards();
     return (
         <div className="prose px-8">
             <h2 className="">Your boards</h2>
-            <button>Add new board</button>
-
+            {/* <AddBoard /> */}
+            <Modal buttonName={'Add new Board'}>
+                <AddBoard />
+            </Modal>
             <div className="flex gap-4">
                 {boardsData.map((boardsData) => (
                     <Link

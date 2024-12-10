@@ -4,24 +4,34 @@ import {
     EllipsisVertical,
     MessageSquare,
     Paperclip,
+    Pencil,
+    Trash,
+    Trash2,
 } from 'lucide-react';
 import Image from 'next/image';
 import { format } from 'date-fns';
 import { ITask } from '@/models/Board';
+import Modal from './ui/Modal';
+import AddTask from './AddTask';
+import TaskCardOptions from './TaskCardOptions';
 
 export default function TaskCard({ taskData }: { taskData: ITask }) {
     return (
-        <div className="card-compact card-bordered bg-gray-100 shadow-sm  rounded-lg ">
+        <div className="card-compact card-bordered shadow-sm rounded-lg ">
             <div className="card-body">
                 <div className="flex justify-between items-center">
                     <div className="badge badge-secondary">
                         {taskData.topic}
                     </div>
-                    <div className="flex gap-1">
-                        <button>
-                            <EllipsisVertical className="size-4" />
-                        </button>
-                    </div>
+                    <TaskCardOptions
+                        taskData={{
+                            id: taskData.id,
+                            title: taskData.title,
+                            dueDate: format(taskData.dueDate, 'yyyy-MM-dd'),
+                            description: taskData.description,
+                            severity: taskData.severity,
+                        }}
+                    />
                 </div>
                 <h4 className="font-semibold flex items-center gap-2">
                     {taskData.severity === 'high' && (

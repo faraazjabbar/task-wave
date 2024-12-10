@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Plus } from 'lucide-react';
+import { Bolt, Plus } from 'lucide-react';
 import { IBoard } from '@/models/Board';
 
 export default function BoardInfoBar({
@@ -8,9 +8,9 @@ export default function BoardInfoBar({
     boardInfo: IBoard;
 }>) {
     return (
-        <section className="px-8 py-4 bg-neutral">
-            <div className="flex justify-between">
-                <div className="flex gap-4 items-center text-neutral-content">
+        <section className="px-8 py-4 shadow-sm">
+            <div className="flex justify-between ">
+                <div className="flex gap-4 items-center">
                     <Image
                         src="/icon.png"
                         width={100}
@@ -36,6 +36,9 @@ export default function BoardInfoBar({
                         {' '}
                         <Plus />
                         Add Member
+                    </button>
+                    <button className="btn btn-outline btn-primary">
+                        <Bolt />
                     </button>
                 </div>
             </div>

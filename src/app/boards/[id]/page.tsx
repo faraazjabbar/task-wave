@@ -13,7 +13,7 @@ export default async function Board({
     const routeParams = await params;
     const boardId = routeParams.id;
     const boardData: IBoard = await getBoardData(boardId);
-
+    console.log(boardData);
     return (
         <>
             <div className="breadcrumbs text-sm px-8">
@@ -31,6 +31,7 @@ export default async function Board({
                     {boardData.columns && (
                         <KanbanView
                             columnsData={boardData.columns}
+                            boardId={boardData.id}
                         ></KanbanView>
                     )}
                 </>

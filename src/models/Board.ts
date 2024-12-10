@@ -28,6 +28,7 @@ const boardSchema = new Schema<IBoard>({
 });
 
 export interface IColumn {
+    id: string;
     name: string;
     boardId: Types.ObjectId;
     tasks?: Types.Array<ITask>;
@@ -51,7 +52,18 @@ const columnSchema = new Schema<IColumn>({
     ],
 });
 
+columnSchema.post('save', function (doc, next) {
+    Board.findByIdAndUpdate(
+        doc.boardId,
+        { $push: { columns: doc._id } },
+        { new: true }
+    )
+        .then(() => next())
+        .catch((err) => next(err));
+});
+
 export interface ITask {
+    id: string;
     title: string;
     description: string;
     dueDate: Date;
@@ -104,6 +116,16 @@ const taskSchema = new Schema<ITask>({
         ref: 'Column',
         required: true,
     },
+});
+
+taskSchema.post('save', function (doc, next) {
+    Column.findByIdAndUpdate(
+        doc.columnId,
+        { $push: { tasks: doc._id } },
+        { new: true }
+    )
+        .then(() => next())
+        .catch((err) => next(err));
 });
 
 export const Task = mongoose.models.Task || mongoose.model('Task', taskSchema);

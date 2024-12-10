@@ -1,8 +1,17 @@
 import { EllipsisVertical, Plus } from 'lucide-react';
 import { IColumn } from '@/models/Board';
 import TaskCard from './TaskCard';
+import Modal from './ui/Modal';
+import AddColumn from './AddColumn';
+import AddTask from './AddTask';
 
-export default function ColumnView({ columnData }: { columnData: IColumn }) {
+export default function ColumnView({
+    columnData,
+    boardId,
+}: {
+    columnData: IColumn;
+    boardId: string;
+}) {
     return (
         <div className="flex flex-col gap-4">
             <div className="flex gap-2 items-center">
@@ -17,9 +26,12 @@ export default function ColumnView({ columnData }: { columnData: IColumn }) {
                     <EllipsisVertical className="size-5" />
                 </button>
             </div>
-            <button className="btn btn-sm btn-outline btn-primary">
+            {/* <button className="btn btn-sm btn-outline btn-primary">
                 <Plus className="size-4" /> Add Task
-            </button>
+            </button> */}
+            <Modal buttonName={'Add Task'}>
+                <AddTask boardId={boardId} columnId={columnData.id} />
+            </Modal>
 
             {columnData.tasks && (
                 <div className="rounded-2xl flex flex-col gap-2">
