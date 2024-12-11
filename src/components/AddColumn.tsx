@@ -2,8 +2,8 @@
 
 import { addColumn } from '@/actions/data';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import cn from 'classnames';
 import { Types } from 'mongoose';
+import { cn } from '@/lib/utils';
 
 const AddColumn = ({
     boardId,

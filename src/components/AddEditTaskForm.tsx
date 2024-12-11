@@ -2,8 +2,8 @@
 
 import { addTask, editTask } from '@/actions/data';
 import { useForm } from 'react-hook-form';
-import cn from 'classnames';
 import { Types } from 'mongoose';
+import { cn } from '@/lib/utils';
 
 const AddEditTaskForm = ({
     boardId,
