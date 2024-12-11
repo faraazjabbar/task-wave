@@ -3,7 +3,7 @@ import mongoose, { Types } from 'mongoose';
 const Schema = mongoose.Schema;
 
 export interface IBoard {
-    id: string;
+    id: Types.ObjectId;
     name: string;
     owner: Types.ObjectId;
     columns?: Types.Array<IColumn>;
@@ -28,7 +28,7 @@ const boardSchema = new Schema<IBoard>({
 });
 
 export interface IColumn {
-    id: string;
+    id: Types.ObjectId;
     name: string;
     boardId: Types.ObjectId;
     tasks?: Types.Array<ITask>;
@@ -63,10 +63,10 @@ columnSchema.post('save', function (doc, next) {
 });
 
 export interface ITask {
-    id: string;
+    id: Types.ObjectId;
     title: string;
     description: string;
-    dueDate: Date;
+    dueDate: Date | string;
     topic: string;
     severity: string;
     comments: Types.Array<{

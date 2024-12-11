@@ -14,6 +14,7 @@ export default async function Home() {
                     <BoardInfoBar boardInfo={boardData}></BoardInfoBar>
                     {boardData.columns && (
                         <KanbanView
+                            boardId={boardData.id}
                             columnsData={boardData.columns}
                         ></KanbanView>
                     )}

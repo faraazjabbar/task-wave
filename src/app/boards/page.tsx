@@ -17,7 +17,7 @@ export default async function Boards() {
             <div className="flex gap-4">
                 {boardsData.map((boardsData) => (
                     <Link
-                        key={boardsData.id}
+                        key={boardsData.id.toString()}
                         href={'boards/' + boardsData.id}
                         className="card bg-base-100 w-96 shadow-xl cursor-pointer"
                     >

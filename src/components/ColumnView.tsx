@@ -2,15 +2,15 @@ import { EllipsisVertical, Plus } from 'lucide-react';
 import { IColumn } from '@/models/Board';
 import TaskCard from './TaskCard';
 import Modal from './ui/Modal';
-import AddColumn from './AddColumn';
-import AddEditTask from './AddEditTask';
+import AddEditTaskForm from './AddEditTaskForm';
+import { Types } from 'mongoose';
 
 export default function ColumnView({
     columnData,
     boardId,
 }: {
     columnData: IColumn;
-    boardId: string;
+    boardId: Types.ObjectId;
 }) {
     return (
         <div className="flex flex-col gap-4">
@@ -26,13 +26,14 @@ export default function ColumnView({
                     <EllipsisVertical className="size-5" />
                 </button>
             </div>
+            {/* TODO - Change modal button implementation to use styled button
+            instead of generic button */}
             {/* <button className="btn btn-sm btn-outline btn-primary">
                 <Plus className="size-4" /> Add Task
             </button> */}
             <Modal buttonName={'Add Task'}>
-                <AddEditTask boardId={boardId} columnId={columnData.id} />
+                <AddEditTaskForm boardId={boardId} columnId={columnData.id} />
             </Modal>
-
             {columnData.tasks && (
                 <div className="rounded-2xl flex flex-col gap-2">
                     {columnData.tasks.map((task) => (

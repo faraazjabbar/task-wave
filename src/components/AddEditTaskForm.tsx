@@ -1,31 +1,37 @@
 'use client';
 
 import { addTask, editTask } from '@/actions/data';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import cn from 'classnames';
+import { Types } from 'mongoose';
 
-const AddEditTask = ({
+const AddEditTaskForm = ({
     boardId,
     columnId,
     closeModal = () => {},
     editTaskData,
 }: {
-    boardId: string;
-    columnId: string;
+    boardId: Types.ObjectId;
+    columnId?: Types.ObjectId;
     closeModal?: () => void;
     editTaskData?: any;
 }) => {
+    type AddEditFormValues = {
+        title: string;
+        description: string;
+        dueDate: Date;
+        severity: string;
+    };
     const {
         register,
         handleSubmit,
-
         formState: { errors },
-    } = useForm({ defaultValues: editTaskData });
-    const onSubmit: SubmitHandler<any> = (data) => {
-        console.log(data);
+    } = useForm<AddEditFormValues>({ defaultValues: editTaskData });
+
+    const onSubmit = (data: AddEditFormValues) => {
         if (editTaskData) {
             editTask(data, boardId);
-        } else {
+        } else if (columnId) {
             addTask(data, columnId, boardId);
         }
         closeModal();
@@ -122,4 +128,4 @@ const AddEditTask = ({
     );
 };
 
-export default AddEditTask;
+export default AddEditTaskForm;

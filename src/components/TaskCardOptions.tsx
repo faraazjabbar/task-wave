@@ -1,11 +1,24 @@
 'use client';
 
 import { EllipsisVertical, Pencil, Trash2 } from 'lucide-react';
-import React, { useRef, useState } from 'react';
-import AddTask from './AddEditTask';
+import React, { useRef } from 'react';
+import AddEditTaskForm from './AddEditTaskForm';
 import DeleteConfirmation from './DeleteCofirmation';
+import { Types } from 'mongoose';
 
-const TaskCardOptions = ({ taskData, boardId }) => {
+const TaskCardOptions = ({
+    taskData,
+    boardId,
+}: {
+    taskData: {
+        id: Types.ObjectId;
+        title: string;
+        dueDate: string;
+        description: string;
+        severity: string;
+    };
+    boardId: Types.ObjectId;
+}) => {
     const modalRef = useRef<HTMLDialogElement>(null);
     const delModalRef = useRef<HTMLDialogElement>(null);
     const dropdownRef = useRef<HTMLUListElement>(null);
@@ -30,9 +43,8 @@ const TaskCardOptions = ({ taskData, boardId }) => {
                 <div className="modal-box">
                     {JSON.stringify(taskData)}
                     {taskData && (
-                        <AddTask
+                        <AddEditTaskForm
                             boardId={boardId}
-                            columnId=""
                             closeModal={closeModal}
                             editTaskData={taskData}
                         />
@@ -65,6 +77,7 @@ const TaskCardOptions = ({ taskData, boardId }) => {
                         <a className="text-primary">
                             <Pencil className="size-4" /> Edit
                         </a>
+                        {/* TODO */}
                         {/* <a className="text-primary">
                 <Pencil className="size-4" /> Edit
             </a> */}

@@ -1,24 +1,27 @@
 'use client';
 
-import { addBoard, addColumn } from '@/actions/data';
+import { addColumn } from '@/actions/data';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import cn from 'classnames';
+import { Types } from 'mongoose';
 
 const AddColumn = ({
     boardId,
     closeModal = () => {},
 }: {
-    boardId: string;
+    boardId: Types.ObjectId;
     closeModal?: () => void;
 }) => {
+    type AddColumnFormValues = {
+        name: string;
+    };
+
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
-    } = useForm();
-    const onSubmit: SubmitHandler<any> = (data) => {
-        // console.log(data);
+    } = useForm<AddColumnFormValues>();
+    const onSubmit = (data: AddColumnFormValues) => {
         addColumn(data, boardId);
         closeModal();
     };
@@ -26,13 +29,13 @@ const AddColumn = ({
         <form onSubmit={handleSubmit(onSubmit)}>
             <h3 className="font-bold text-lg">Add new column</h3>
             <input
-                {...register('columnName', { required: true })}
+                {...register('name', { required: true })}
                 placeholder="Column Name"
                 className={cn('input input-bordered w-full max-w-xs', {
-                    'input-error': errors.columnName,
+                    'input-error': errors.name,
                 })}
             />
-            {errors.columnName && (
+            {errors.name && (
                 <p className="mt-1 text-error">This field is required</p>
             )}
 

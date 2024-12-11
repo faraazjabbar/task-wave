@@ -1,26 +1,16 @@
-import {
-    ArrowBigUp,
-    Calendar,
-    EllipsisVertical,
-    MessageSquare,
-    Paperclip,
-    Pencil,
-    Trash,
-    Trash2,
-} from 'lucide-react';
+import { ArrowBigUp, Calendar, MessageSquare, Paperclip } from 'lucide-react';
 import Image from 'next/image';
 import { format } from 'date-fns';
 import { ITask } from '@/models/Board';
-import Modal from './ui/Modal';
-import AddTask from './AddEditTask';
 import TaskCardOptions from './TaskCardOptions';
+import { Types } from 'mongoose';
 
 export default function TaskCard({
     taskData,
     boardId,
 }: {
     taskData: ITask;
-    boardId: string;
+    boardId: Types.ObjectId;
 }) {
     return (
         <div className="card-compact card-bordered shadow-sm rounded-lg ">
