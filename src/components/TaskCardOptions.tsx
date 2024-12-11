@@ -2,20 +2,14 @@
 
 import { EllipsisVertical, Pencil, Trash2 } from 'lucide-react';
 import React, { useRef, useState } from 'react';
-import AddTask from './AddTask';
+import AddTask from './AddEditTask';
+import DeleteConfirmation from './DeleteCofirmation';
 
-const TaskCardOptions = ({ taskData }) => {
+const TaskCardOptions = ({ taskData, boardId }) => {
     const modalRef = useRef<HTMLDialogElement>(null);
+    const delModalRef = useRef<HTMLDialogElement>(null);
     const dropdownRef = useRef<HTMLUListElement>(null);
 
-    // const showModal = () => {
-    //     (
-    //         document.getElementById('my_modal_1') as HTMLDialogElement
-    //     ).showModal();
-    // };
-    // const closeModal = () => {
-    //     (document.getElementById('my_modal_1') as HTMLDialogElement).close();
-    // };
     const showModal = () => {
         dropdownRef.current?.blur();
         modalRef.current?.showModal();
@@ -23,7 +17,13 @@ const TaskCardOptions = ({ taskData }) => {
     const closeModal = () => {
         modalRef.current?.close();
     };
-
+    const showDelModal = () => {
+        dropdownRef.current?.blur();
+        delModalRef.current?.showModal();
+    };
+    const closeDelModal = () => {
+        delModalRef.current?.close();
+    };
     return (
         <>
             <dialog ref={modalRef} className="modal">
@@ -31,10 +31,21 @@ const TaskCardOptions = ({ taskData }) => {
                     {JSON.stringify(taskData)}
                     {taskData && (
                         <AddTask
-                            boardId=""
+                            boardId={boardId}
                             columnId=""
                             closeModal={closeModal}
                             editTaskData={taskData}
+                        />
+                    )}
+                </div>
+            </dialog>
+            <dialog ref={delModalRef} className="modal">
+                <div className="modal-box">
+                    {taskData && (
+                        <DeleteConfirmation
+                            boardId={boardId}
+                            closeModal={closeDelModal}
+                            taskId={taskData.id}
                         />
                     )}
                 </div>
@@ -59,7 +70,7 @@ const TaskCardOptions = ({ taskData }) => {
             </a> */}
                     </li>
                     <li>
-                        <a className="text-error">
+                        <a onClick={showDelModal} className="text-error">
                             <Trash2 className="size-4" /> Delete
                         </a>
                     </li>

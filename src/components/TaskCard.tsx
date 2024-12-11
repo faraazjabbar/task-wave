@@ -12,10 +12,16 @@ import Image from 'next/image';
 import { format } from 'date-fns';
 import { ITask } from '@/models/Board';
 import Modal from './ui/Modal';
-import AddTask from './AddTask';
+import AddTask from './AddEditTask';
 import TaskCardOptions from './TaskCardOptions';
 
-export default function TaskCard({ taskData }: { taskData: ITask }) {
+export default function TaskCard({
+    taskData,
+    boardId,
+}: {
+    taskData: ITask;
+    boardId: string;
+}) {
     return (
         <div className="card-compact card-bordered shadow-sm rounded-lg ">
             <div className="card-body">
@@ -31,6 +37,7 @@ export default function TaskCard({ taskData }: { taskData: ITask }) {
                             description: taskData.description,
                             severity: taskData.severity,
                         }}
+                        boardId={boardId}
                     />
                 </div>
                 <h4 className="font-semibold flex items-center gap-2">
@@ -57,19 +64,14 @@ export default function TaskCard({ taskData }: { taskData: ITask }) {
                     <Calendar className="size-3" />
                     <span>{format(taskData.dueDate, 'do MMM yyyy')}</span>
                 </div>
-                <div className="text-xs gap-2 flex justify-between ml-2">
-                    <div className="flex items-center">
-                        {[1, 2, 3].map((i) => (
-                            <Image
-                                alt="pic"
-                                key={i}
-                                src="/icon.png"
-                                width={25}
-                                height={25}
-                                className="rounded-full -ml-2 border-primary"
-                            />
-                        ))}
-                    </div>
+                <div className="text-xs flex justify-between">
+                    <Image
+                        alt="pic"
+                        src="/icon.png"
+                        width={25}
+                        height={25}
+                        className="rounded-full border-primary"
+                    />
                     <div className="flex gap-2 items-center">
                         <div className="flex gap-1 items-center">
                             <MessageSquare className="size-3" /> 3

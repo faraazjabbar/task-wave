@@ -44,3 +44,10 @@ export async function editTask(taskData, boardId) {
     });
     revalidatePath('/boards/' + boardId);
 }
+export async function deleteTask(formData) {
+    console.log(formData);
+    const taskId = formData.get('taskId');
+    const boardId = formData.get('boardId');
+    await Task.findByIdAndDelete(taskId);
+    revalidatePath('/boards/' + boardId);
+}
