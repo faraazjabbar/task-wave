@@ -1,7 +1,7 @@
 'use server';
 
 import { auth } from '@/auth';
-import { Board, IColumn, ITask } from '@/models/Board';
+import { Board, ITask } from '@/models/Board';
 import Column from '@/models/Column';
 import Task from '@/models/Task';
 import { Types } from 'mongoose';
@@ -29,9 +29,10 @@ export async function addColumn(
 }
 export async function addTask(
     taskData: {
+        id: Types.ObjectId;
         title: string;
+        dueDate: string;
         description: string;
-        dueDate: Date;
         severity: string;
     },
     columnId: Types.ObjectId,
@@ -47,10 +48,10 @@ export async function addTask(
 }
 export async function editTask(
     taskData: {
-        id?: string;
+        id: Types.ObjectId;
         title: string;
+        dueDate: string;
         description: string;
-        dueDate: Date;
         severity: string;
     },
     boardId: Types.ObjectId

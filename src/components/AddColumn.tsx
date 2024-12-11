@@ -1,9 +1,9 @@
 'use client';
 
 import { addColumn } from '@/actions/data';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { Types } from 'mongoose';
-import { cn } from '@/lib/utils';
+import cn from 'classnames';
 
 const AddColumn = ({
     boardId,

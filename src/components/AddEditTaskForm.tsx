@@ -3,7 +3,7 @@
 import { addTask, editTask } from '@/actions/data';
 import { useForm } from 'react-hook-form';
 import { Types } from 'mongoose';
-import { cn } from '@/lib/utils';
+import cn from 'classnames';
 
 const AddEditTaskForm = ({
     boardId,
@@ -14,12 +14,19 @@ const AddEditTaskForm = ({
     boardId: Types.ObjectId;
     columnId?: Types.ObjectId;
     closeModal?: () => void;
-    editTaskData?: any;
+    editTaskData?: {
+        id: Types.ObjectId;
+        title: string;
+        dueDate: string;
+        description: string;
+        severity: string;
+    };
 }) => {
     type AddEditFormValues = {
+        id: Types.ObjectId;
         title: string;
+        dueDate: string;
         description: string;
-        dueDate: Date;
         severity: string;
     };
     const {

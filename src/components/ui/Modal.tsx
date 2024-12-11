@@ -1,13 +1,13 @@
 'use client';
 
-import React, { ReactNode, useRef } from 'react';
+import React, { useRef } from 'react';
 
 export default function Modal({
     buttonName,
     children,
 }: {
     buttonName: string;
-    children: any;
+    children: JSX.Element;
 }) {
     const modalRef = useRef<HTMLDialogElement>(null);
     // const showModal = () => {

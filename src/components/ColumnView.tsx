@@ -1,4 +1,4 @@
-import { EllipsisVertical, Plus } from 'lucide-react';
+import { EllipsisVertical } from 'lucide-react';
 import { IColumn } from '@/models/Board';
 import TaskCard from './TaskCard';
 import Modal from './ui/Modal';
